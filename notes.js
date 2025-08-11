@@ -18,14 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let Form = document.querySelector(".Notes-form");
     const addNotesDiv = document.querySelector(".addNotes");
 
-    Form.addEventListener("submit", function (details) {
-        details.preventDefault();
-        console.log(details);
-
-        //storing the inputs of the from...
-        let noteTitle = details.target.title.value;
-        let noteContent = details.target.content.value;
-
+    function createCard(noteTitle, noteContent) {
         let card = document.createElement("div");
         card.classList.add("card");
 
@@ -46,43 +39,68 @@ document.addEventListener("DOMContentLoaded", function () {
         NotesHeader.appendChild(headerTitle);
         NotesHeader.appendChild(actionSection);
 
-
         let edit_button = document.createElement("button");
         edit_button.id = "editBtn";
 
         let penIcon = document.createElement("i");
         penIcon.id = "icon";
         penIcon.className = "fa-solid fa-pen";
-
         edit_button.appendChild(penIcon);
 
         let deleteBtn = document.createElement("button");
         deleteBtn.id = "closeBtn";
         deleteBtn.textContent = "x";
         deleteBtn.addEventListener("click", function () {
-            card.style.display = "none";
+            card.remove();
+            deleteNoteFromStorage(noteTitle);
         });
         actionSection.appendChild(edit_button);
         actionSection.appendChild(deleteBtn);
 
-        let TextArea = document.createElement("textarea");
-        TextArea.rows = "15";
-        TextArea.cols = "30";
-        TextArea.value = noteContent;
-        
-        
+        let TextArea = document.createElement("div");
+        TextArea.style.background = "#21222B";
+        TextArea.style.width = "300px";
+        TextArea.style.height = "200px";
+        TextArea.style.color = "white";
+        TextArea.style.padding = ".5rem";
+        TextArea.textContent = noteContent;
 
         card.appendChild(NotesHeader);
         card.appendChild(TextArea);
 
-        div.appendChild(card);
+        div.prepend(card);
+    }
+
+    function getNotesFromStorage() {
+        return JSON.parse(localStorage.getItem("notes")) || [];
+    }
+
+    function saveNoteToStorage(noteTitle, noteContent) {
+        let notes = getNotesFromStorage();
+        notes.push({ title: noteTitle, content: noteContent });
+        localStorage.setItem("notes", JSON.stringify(notes));
+    }
+
+    function deleteNoteFromStorage(noteTitle) {
+        let notes = getNotesFromStorage();
+        notes = notes.filter(note => note.title !== noteTitle);
+        localStorage.setItem("notes", JSON.stringify(notes));
+    }
+
+    Form.addEventListener("submit", function (details) {
+        details.preventDefault();
+
+        let noteTitle = details.target.title.value;
+        let noteContent = details.target.content.value;
+
+        saveNoteToStorage(noteTitle, noteContent);
+        createCard(noteTitle, noteContent);
 
         Form.reset();
-
-
-        // Hide the addNotes div
         addNotesDiv.style.display = "none";
     });
+
+    // Load all saved notes
+    let savedNotes = getNotesFromStorage();
+    savedNotes.forEach(note => createCard(note.title, note.content));
 });
-
-

@@ -70,7 +70,7 @@ header{
     width: 25%;
     display: none;
     width: 400px;
-
+    z-index: 0;
 }
 
 .div-header{
@@ -187,3 +187,25 @@ textarea{
     padding: .5rem;
     resize: none;
 }
+
+#addDiv{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.add{
+    padding: 3rem;
+    border-radius: 4rem;
+    color: white;
+    font-size: 3rem;
+    font-weight: 100;
+    mix-blend-mode:luminosity;
+    cursor: default;
+    
+}
+
+
