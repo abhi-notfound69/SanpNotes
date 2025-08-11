@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <link rel="stylesheet" href="notes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-title">
+            <h1 style="color: white;">Snap Notes</h1>
+        </div>
+        <div class="header-actions">
+            <button class="add-note" onclick="createNote()">+ Add Notes</button>
+            <button class="toggle-theme" onclick="switchTheme()">🌓</button>
+        </div>
+    </header>
+    <div class="mainContainer">
+        <div class="addNotes">
+            <div class="div-header">
+                <h2 class="div-title">Add New Notes</h2>
+                <button id="closeBtn" onclick="closeNoteDiv()">x</button>
+            </div>
+            <form action="" class="Notes-form">
+                <div class="form-div">
+                    <label for="noteTitle" class="note-label">Title</label>
+                    <input type="text" id="title" placeholder="Enter Note title..." required>
+                </div>
+                <div class="form-div">
+                    <label for="noteContent" class="note-label">Content</label>
+                    <textarea name="" id="content" placeholder="Write your notes here..." required rows="5"></textarea>
+                </div>
+                <div class="div-action">
+                    <input type="submit" id="save-btn" class="action-btn" value="Save Note">
+                    <button type="button" id="cancelBtn" class="action-btn" onclick="closeNoteDiv()">Cancel</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+    <div class="mainDiv">
+    </div>
+
+
+    <script src="notes.js"></script>
+</body>
+
+</html>
