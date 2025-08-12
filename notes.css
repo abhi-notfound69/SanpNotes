@@ -7,7 +7,6 @@
 html , body{
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
 }
 
 body{
@@ -15,7 +14,11 @@ body{
     width: 100%;
     height: 100vh;
     font-family:Arial, Helvetica, sans-serif;
-    
+}
+.mainDiv.blur{
+    filter: blur(5px);
+    user-select: none;
+    transition: filter 0.3s ease;
 }
 header{
     display: flex;
@@ -145,8 +148,10 @@ header{
 }
 
 .mainDiv{
-    margin: 0 2rem;
+    width: auto;
+    margin: 1rem 2rem;
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -190,6 +195,7 @@ textarea{
 
 #addDiv{
     width: 300px;
+    height: 10rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -198,14 +204,20 @@ textarea{
 }
 
 .add{
-    padding: 3rem;
-    border-radius: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .2rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
-    font-size: 3rem;
-    font-weight: 100;
-    mix-blend-mode:luminosity;
+    font-weight: 300;
     cursor: default;
-    
+}
+
+.add:hover{
+    background: #8A8FEC;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 

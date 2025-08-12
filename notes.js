@@ -14,6 +14,15 @@ function closeNoteDiv() {
     NoteDiv.style.display = "none";
 }
 
+let AddDiv = document.querySelector(".add");
+AddDiv.addEventListener("click" , function(){
+    NoteDiv.style.display = "flex";
+    let titleInput = document.querySelector("#title");
+    titleInput.focus();
+})
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
     let Form = document.querySelector(".Notes-form");
     const addNotesDiv = document.querySelector(".addNotes");
@@ -103,4 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load all saved notes
     let savedNotes = getNotesFromStorage();
     savedNotes.forEach(note => createCard(note.title, note.content));
+
+
+
 });
